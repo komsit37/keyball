@@ -38,6 +38,9 @@ rules.mk
 CAPS_WORD_ENABLE = yes
 ```
 
+## Tapping Term
+#define TAPPING_TERM 200
+
 
 # Original README
 
