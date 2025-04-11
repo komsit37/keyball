@@ -1,3 +1,46 @@
+# My Keyball Custom
+
+created: 2025-04-03
+# Instructions
+
+## Setup
+follow https://github.com/Yowkees/keyball/blob/main/qmk_firmware/keyboards/keyball/readme.md
+- need to dowload and build avrdude 7.3 manually (8.0 in brew is not compatible)
+
+## Build
+```bash
+make SKIP_GIT=yes keyball/keyball44:via
+```
+
+## Flash
+```bash
+qmk flash -kb keyball/keyball44 -km via
+```
+double press reset button to detect
+
+# Custom
+## Disable RGB
+rules.mk
+```c
+RGBLIGHT_ENABLE = no
+```
+
+## Increase layer
+config.h
+```c
+#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+```
+Add layer 4 in keymap.c
+ 
+## Enable CAP words
+rules.mk
+```c
+CAPS_WORD_ENABLE = yes
+```
+
+
+# Original README
+
 # Keyball Series
 
 ![Keyball61](./keyball61/doc/rev1/images/kb61_001.jpg)
