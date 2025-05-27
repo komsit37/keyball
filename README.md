@@ -20,8 +20,9 @@ double press reset button to detect
 
 # Custom
 ## Disable RGB
+to free up ROM space
 rules.mk
-```c
+```scala
 RGBLIGHT_ENABLE = no
 ```
 
@@ -34,12 +35,18 @@ Add layer 4 in keymap.c
  
 ## Enable CAP words
 rules.mk
-```c
+```scala
 CAPS_WORD_ENABLE = yes
 ```
 
-## Tapping Term
+## Settings for homerow mods
+recommended here https://getreuer.info/posts/keyboards/faqs/index.html#home-row-mods-are-hard-to-use
+config.h
+```c
 #define TAPPING_TERM 200
+#define CHORDAL_HOLD
+#define PERMISSIVE_HOLD
+```
 
 
 # Original README
