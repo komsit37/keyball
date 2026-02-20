@@ -24,38 +24,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
   [0] = LAYOUT_universal(
-    KC_ESC   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                        KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_DEL   ,
-    KC_TAB   , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                        KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , S(KC_7)  ,
-    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,                                        KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_INT1  ,
-              KC_LALT,KC_LGUI,LCTL_T(KC_LNG2)     ,LT(1,KC_SPC),LT(3,KC_LNG1),                  KC_BSPC,LT(2,KC_ENT), RCTL_T(KC_LNG2),     KC_RALT  , KC_PSCR
+    KC_UP   , KC_B          , LALT_T(KC_L)  , LCTL_T(KC_D)  , LGUI_T(KC_W)  , KC_Q     ,                                    KC_QUOT       , RGUI_T(KC_F)  , RCTL_T(KC_O)  , RALT_T(KC_U)  , KC_J     , KC_LBRC  ,
+    LSFT_T(KC_DOWN), LGUI_T(KC_N)  , LSFT_T(KC_R)  , LT(4,KC_T)    , LT(2,KC_S)    , KC_G     ,                                    KC_Y          , LT(2,KC_H)    , LT(4,KC_A)    , KC_E     , RGUI_T(KC_I) , MT(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_RBRC) ,
+    LGUI_T(KC_GRV), KC_Z          , KC_X          , KC_M          , KC_C          , KC_V     ,                                    KC_K          , KC_P          , LT(3,KC_DOT)  , RSFT_T(KC_SCLN), KC_SLSH  , KC_ENT   ,
+              KC_LEFT      , KC_RGHT       , LT(3,KC_TAB)   , LT(1,KC_ENT)   , LSFT_T(KC_ESC) ,                  LT(2,KC_BSPC), LT(1,KC_SPC) , KC_NO        , KC_NO    , CAPS_WORD_TOGGLE
   ),
 
   [1] = LAYOUT_universal(
-    SSNP_FRE ,  KC_F1   , KC_F2    , KC_F3   , KC_F4    , KC_F5    ,                                         KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
-    SSNP_VRT ,  _______ , _______  , KC_UP   , KC_ENT   , KC_DEL   ,                                         KC_PGUP  , KC_BTN1  , KC_UP    , KC_BTN2  , KC_BTN3  , KC_F12   ,
-    SSNP_HOR ,  _______ , KC_LEFT  , KC_DOWN , KC_RGHT  , KC_BSPC  ,                                         KC_PGDN  , KC_LEFT  , KC_DOWN  , KC_RGHT  , _______  , _______  ,
-                  _______  , _______ , _______  ,         _______  , _______  ,                   _______  , _______  , _______       , _______  , _______
+    _______ , _______      , _______       , _______       , _______       , _______       ,                                  RGUI_T(KC_GRV) , _______       , RCTL_T(S(KC_9)), RALT_T(S(KC_9)), RCTL_T(KC_UP) , KC_HOME  ,
+    _______ , _______      , LSFT_T(KC_GRV), KC_UP         , KC_ESC        , KC_HOME       ,                                  RGUI_T(KC_LBRC), KC_BTN1       , KC_UP         , RSFT_T(KC_BTN2), RGUI_T(KC_HOME), _______  ,
+    _______ , KC_LALT      , KC_LEFT       , KC_DOWN       , KC_RGHT       , KC_END        ,                                  S(KC_1)        , KC_LEFT       , KC_DOWN       , KC_RGHT       , RALT_T(KC_END) , KC_END   ,
+              _______      , _______       , _______       , _______       , KC_DEL        ,                  _______        , _______       , KC_NO         , KC_NO   , KC_RCTL
   ),
 
   [2] = LAYOUT_universal(
-    _______  ,S(KC_QUOT), KC_7     , KC_8    , KC_9     , S(KC_8)  ,                                         S(KC_9)  , S(KC_1)  , S(KC_6)  , KC_LBRC  , S(KC_4)  , _______  ,
-    _______  ,S(KC_SCLN), KC_4     , KC_5    , KC_6     , KC_RBRC  ,                                         KC_NUHS  , KC_MINS  , S(KC_EQL), S(KC_3)  , KC_QUOT  , S(KC_2)  ,
-    _______  ,S(KC_MINS), KC_1     , KC_2    , KC_3     ,S(KC_RBRC),                                        S(KC_NUHS),S(KC_INT1), KC_EQL   ,S(KC_LBRC),S(KC_SLSH),S(KC_INT3),
-                  KC_0     , KC_DOT  , _______  ,         _______  , _______  ,                   KC_DEL   , _______  , _______       , _______  , _______
+    _______ , S(KC_COMM) , S(KC_LBRC), S(KC_9)    , KC_LBRC      , S(KC_GRV) ,                                  S(KC_EQL)   , KC_7          , RCTL_T(KC_8) , RALT_T(KC_9) , S(KC_8)    , S(KC_MINS) ,
+    _______ , S(KC_DOT)  , S(KC_RBRC), S(KC_0)    , KC_RBRC      , S(KC_BSLS),                                  KC_MINS     , KC_4          , KC_5         , RSFT_T(KC_6) , KC_EQL     , KC_MINS    ,
+    _______ , S(KC_SLSH) , KC_BSLS   , S(KC_MINS) , KC_COMM      , KC_GRV    ,                                  KC_0        , KC_1          , S(KC_2)      , S(KC_3)      , KC_SLSH    , RSFT_T(KC_DOT),
+              _______ , _______     , KC_BSPC    , _______      , _______   ,                  KC_COMM    , KC_DOT     , KC_NO         , KC_NO    , KC_COMM
   ),
 
   [3] = LAYOUT_universal(
-    RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  , _______  ,                                        RGB_M_P  , RGB_M_B  , RGB_M_R  , RGB_M_SW , RGB_M_SN , RGB_M_K  ,
-    RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  , _______  , SCRL_DVI ,                                        RGB_M_X  , RGB_M_G  , RGB_M_T  , RGB_M_TW , _______  , _______  ,
-    RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  , _______  , SCRL_DVD ,                                        CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , _______  , KBC_SAVE ,
-                  QK_BOOT  , KBC_RST  , _______  ,        _______  , _______  ,                   _______  , _______  , _______       , KBC_RST  , QK_BOOT
+    _______ , KC_F1        , KC_F2        , KC_F3        , KC_F4        , KC_F5        ,                                  KC_F6        , KC_F7        , KC_F8        , KC_F9        , KC_F10       , _______  ,
+    _______ , KC_GRV       , LSFT_T(KC_P) , KC_P         , KC_QUOT      , KC_BSLS      ,                                  KC_VOLU      , KC_VOLD      , KC_QUOT      , KC_LBRC      , KC_RBRC      , _______  ,
+    _______ , LGUI_T(KC_Z) , _______      , QK_MACRO_0   , QK_MACRO_1   , _______      ,                                  CPI_I100     , CPI_D100     , SCRL_DVD     , SCRL_DVI     , SCRL_DVD     , SCRL_DVI ,
+              _______ , _______      , _______      , _______      , _______      ,                  KC_DEL       , KC_ENT       , KC_NO         , KC_NO    , AML_TO
   ),
 
   [4] = LAYOUT_universal(
-    _______  , _______   , _______  , _______  , _______  , _______  ,                                        RGB_M_P  , RGB_M_B  , RGB_M_R  , RGB_M_SW , RGB_M_SN , RGB_M_K  ,
-    _______  , _______  , _______  , _______  , _______  , _______ ,                                        RGB_M_X  , RGB_M_G  , RGB_M_T  , RGB_M_TW , _______  , _______  ,
-    RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  , _______  , _______ ,                                        CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , _______  , KBC_SAVE ,
-                  QK_BOOT  , _______  , _______  ,        _______  , _______  ,                   _______  , _______  , _______       , KBC_RST  , QK_BOOT
+    KC_Q      , MT(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_B) , MT(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_L) , MT(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_D) , MT(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_W) , MT(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_Q) ,                                  _______      , S(KC_7)     , S(KC_8)     , S(KC_BSLS) , _______  , _______  ,
+    KC_A      , KC_A       , KC_S       , KC_D       , KC_F       , KC_G       ,                                  _______      , S(KC_4)     , S(KC_5)     , S(KC_6)     , S(KC_SCLN) , _______  ,
+    RGB_RMOD , RGB_HUD    , RGB_SAD    , RGB_VAD    , _______    , _______    ,                                  _______      , S(KC_1)     , S(KC_2)     , S(KC_3)     , _______    , _______  ,
+              QK_BOOT  , _______    , KC_TAB     , KC_SPC     , _______    ,                  _______      , _______    , KC_NO         , KC_NO    , TO(0)
   ),
 };
 // clang-format on
