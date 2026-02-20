@@ -43,9 +43,17 @@ CAPS_WORD_ENABLE = yes
 recommended here https://getreuer.info/posts/keyboards/faqs/index.html#home-row-mods-are-hard-to-use
 config.h
 ```c
-#define TAPPING_TERM 200
+#define TAPPING_TERM 170
+#define TAPPING_TERM_PER_KEY
 #define CHORDAL_HOLD
-#define PERMISSIVE_HOLD
+```
+keymap.c
+```c
+// Finger-based tapping terms
+// pinky: N/I = 160
+// ring: L/U/R/E = 152
+// middle: D/O/T/A = 145
+// index: S/H/W/F = 138
 ```
 
 ## Update 2026-02-20
@@ -53,7 +61,7 @@ Keymap refresh for current daily usage and combo-heavy text navigation/editing.
 - Layer 0: shift-hold moved from `;` to `E`.
 - Layer 2: symbol row adjusted (`@/#` changed to `2/3` on the base positions).
 - Layer 1-4: synced to current cheat sheet (navigation, symbols, function/media, RGB/boot).
-- Combos enabled with `COMBO_ALLOW_ACTION_KEYS` and `COMBO_ONLY_FROM_LAYER 0` in `config.h`, plus `COMBO_ENABLE = yes` in `rules.mk`.
+- Combos enabled with `COMBO_ALLOW_ACTION_KEYS`, `COMBO_ONLY_FROM_LAYER 0`, and `COMBO_MUST_TAP_PER_COMBO` in `config.h`, plus `COMBO_ENABLE = yes` in `rules.mk`.
 - Active combos:
   - `E+I` -> `Alt+Backspace`
   - `H+A` -> `Ctrl+A`
@@ -67,7 +75,7 @@ Keymap refresh for current daily usage and combo-heavy text navigation/editing.
   - `S+G` -> `Alt+Right`
   - `.+;` -> `:`
   - `Enter+Space` -> `TG(1)`
-  - `S+H` -> `TG(2)`
+  - `/+Enter` -> `TG(2)`
 
 ------------------------------------------------------------------------------------------------
 

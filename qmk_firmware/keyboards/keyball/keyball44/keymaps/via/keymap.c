@@ -49,7 +49,7 @@ const uint16_t PROGMEM dot_scln_combo[] = {LT(3, KC_DOT), KC_SCLN, COMBO_END};
 const uint16_t PROGMEM nr_combo[]  = {LGUI_T(KC_N), LSFT_T(KC_R), COMBO_END};
 const uint16_t PROGMEM sg_combo[]  = {LT(2, KC_S), KC_G, COMBO_END};
 const uint16_t PROGMEM ent_spc_combo[] = {LT(1, KC_ENT), LT(1, KC_SPC), COMBO_END};
-const uint16_t PROGMEM sh_combo[]  = {LT(2, KC_S), LT(2, KC_H), COMBO_END};
+const uint16_t PROGMEM sh_combo[]  = {KC_SLSH, KC_ENT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     [EI_ALT_BSPC] = COMBO(ei_combo, A(KC_BSPC)),
@@ -66,6 +66,48 @@ combo_t key_combos[COMBO_COUNT] = {
     [ENT_SPC_TG1] = COMBO(ent_spc_combo, TG(1)),
     [SH_TG2]      = COMBO(sh_combo, TG(2)),
 };
+
+bool get_combo_must_tap(uint16_t combo_index, combo_t *combo) {
+    return true;
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    // Finger-based tuning: index/middle tap faster, ring/pinky need slightly longer.
+    const uint16_t INDEX_TERM  = 138; // S/H/W/F
+    const uint16_t MIDDLE_TERM = 145; // D/O/T/A
+    const uint16_t RING_TERM   = 152; // L/U/R/E
+    const uint16_t PINKY_TERM  = 160; // N/I
+
+    switch (keycode) {
+        // Pinky
+        case LGUI_T(KC_N):
+        case RGUI_T(KC_I):
+            return PINKY_TERM;
+
+        // Ring
+        case LALT_T(KC_L):
+        case RALT_T(KC_U):
+        case LSFT_T(KC_R):
+        case RSFT_T(KC_E):
+            return RING_TERM;
+
+        // Middle
+        case LCTL_T(KC_D):
+        case RCTL_T(KC_O):
+        case LT(4, KC_T):
+        case LT(4, KC_A):
+            return MIDDLE_TERM;
+
+        // Index
+        case LGUI_T(KC_W):
+        case RGUI_T(KC_F):
+        case LT(2, KC_S):
+        case LT(2, KC_H):
+            return INDEX_TERM;
+    }
+
+    return TAPPING_TERM;
+}
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
