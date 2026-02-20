@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_UP   , KC_B          , LALT_T(KC_L)  , LCTL_T(KC_D)  , LGUI_T(KC_W)  , KC_Q     ,                                    KC_QUOT       , RGUI_T(KC_F)  , RCTL_T(KC_O)  , RALT_T(KC_U)  , KC_J     , KC_LBRC  ,
     LSFT_T(KC_DOWN), LGUI_T(KC_N)  , LSFT_T(KC_R)  , LT(4,KC_T)    , LT(2,KC_S)    , KC_G     ,                                    KC_Y          , LT(2,KC_H)    , LT(4,KC_A)    , KC_E     , RGUI_T(KC_I) , MT(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_RBRC) ,
     LGUI_T(KC_GRV), KC_Z          , KC_X          , KC_M          , KC_C          , KC_V     ,                                    KC_K          , KC_P          , LT(3,KC_DOT)  , RSFT_T(KC_SCLN), KC_SLSH  , KC_ENT   ,
-              KC_LEFT      , KC_RGHT       , LT(3,KC_TAB)   , LT(1,KC_ENT)   , LSFT_T(KC_ESC) ,                  LT(2,KC_BSPC), LT(1,KC_SPC) , KC_NO        , KC_NO    , CAPS_WORD_TOGGLE
+              KC_LEFT      , KC_RGHT       , LT(3,KC_TAB)   , LT(1,KC_ENT)   , LSFT_T(KC_ESC) ,                  LT(2,KC_BSPC), LT(1,KC_SPC) , KC_NO        , KC_NO    , QK_CAPS_WORD_TOGGLE
   ),
 
   [1] = LAYOUT_universal(
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT_universal(
     _______ , S(KC_COMM) , S(KC_LBRC), S(KC_9)    , KC_LBRC      , S(KC_GRV) ,                                  S(KC_EQL)   , KC_7          , RCTL_T(KC_8) , RALT_T(KC_9) , S(KC_8)    , S(KC_MINS) ,
     _______ , S(KC_DOT)  , S(KC_RBRC), S(KC_0)    , KC_RBRC      , S(KC_BSLS),                                  KC_MINS     , KC_4          , KC_5         , RSFT_T(KC_6) , KC_EQL     , KC_MINS    ,
-    _______ , S(KC_SLSH) , KC_BSLS   , S(KC_MINS) , KC_COMM      , KC_GRV    ,                                  KC_0        , KC_1          , S(KC_2)      , S(KC_3)      , KC_SLSH    , RSFT_T(KC_DOT),
+    _______ , S(KC_SLSH) , KC_BSLS   , S(KC_MINS) , KC_COMM      , KC_GRV    ,                                  KC_0        , KC_1          , KC_2         , KC_3         , KC_SLSH    , RSFT_T(KC_DOT),
               _______ , _______     , KC_BSPC    , _______      , _______   ,                  KC_COMM    , KC_DOT     , KC_NO         , KC_NO    , KC_COMM
   ),
 
