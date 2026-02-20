@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_DEFAULT_LAYER 1
 
-#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+#define DYNAMIC_KEYMAP_LAYER_COUNT 6
 #define TAPPING_TERM 170
 #define TAPPING_TERM_PER_KEY
 
@@ -47,3 +47,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBO_ALLOW_ACTION_KEYS
 #define COMBO_ONLY_FROM_LAYER 0
 #define COMBO_MUST_TAP_PER_COMBO
+
+#define KEYBALL_STATS_ENABLE

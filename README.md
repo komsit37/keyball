@@ -29,9 +29,9 @@ RGBLIGHT_ENABLE = no
 ## Increase layer
 config.h
 ```c
-#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+#define DYNAMIC_KEYMAP_LAYER_COUNT 6
 ```
-Add layer 4 in keymap.c
+Add layer 5 in keymap.c
  
 ## Enable CAP words
 rules.mk
@@ -51,8 +51,8 @@ keymap.c
 ```c
 // Finger-based tapping terms
 // pinky: N/I = 160
-// ring: L/U/R/E = 152
-// middle: D/O/T/A = 145
+// ring: L/U/R = 152, E = 160
+// middle: D/T/A = 145, O = 153
 // index: S/H/W/F = 138
 ```
 
@@ -62,6 +62,11 @@ Keymap refresh for current daily usage and combo-heavy text navigation/editing.
 - Layer 2: symbol row adjusted (`@/#` changed to `2/3` on the base positions).
 - Layer 1-4: synced to current cheat sheet (navigation, symbols, function/media, RGB/boot).
 - Combos enabled with `COMBO_ALLOW_ACTION_KEYS`, `COMBO_ONLY_FROM_LAYER 0`, and `COMBO_MUST_TAP_PER_COMBO` in `config.h`, plus `COMBO_ENABLE = yes` in `rules.mk`.
+- Telemetry build is currently enabled with `#define KEYBALL_STATS_ENABLE` in `config.h` and `CONSOLE_ENABLE = yes` in `rules.mk`.
+- OLED is disabled in telemetry profile (`OLED_ENABLE = no`) to fit firmware size.
+- Stats dump key: layer 3, row 3 col 0 (`STATS_DUMP`).
+- Telemetry tracks per-key tap/hold/interrupted counts and average tap/hold ms for: `L D W F O U N R E I T S H A`, plus combo trigger counts.
+- Read stats with `qmk console` after pressing dump key.
 - Active combos:
   - `E+I` -> `Alt+Backspace`
   - `H+A` -> `Ctrl+A`
@@ -75,7 +80,29 @@ Keymap refresh for current daily usage and combo-heavy text navigation/editing.
   - `S+G` -> `Alt+Right`
   - `.+;` -> `:`
   - `Enter+Space` -> `TG(1)`
-  - `/+Enter` -> `TG(2)`
+  - `/+Enter` -> `TG(5)` (Excel layer)
+
+## Tuning Workflow
+Use this loop to tune tapping terms and hold behavior.
+1. Build and flash telemetry profile:
+```bash
+make SKIP_GIT=yes keyball/keyball44:via
+qmk flash -kb keyball/keyball44 -km via
+```
+2. Open console:
+```bash
+qmk console
+```
+3. Type real text and shortcuts for 5-15 minutes, including known failure patterns.
+4. Press stats dump key (layer 3, row 3 col 0).
+5. Capture `KBST` output lines:
+   - `Kx,presses,taps,holds,interrupted,tap_avg_ms,hold_avg_ms,tap_pct`
+   - `Cx,count`
+6. Tune rules:
+   - If accidental holds are high on a key, increase its tapping term by 5-10 ms.
+   - If intentional holds feel hard, decrease by 5-10 ms.
+   - Prioritize high-frequency keys first (`presses` large).
+7. Rebuild, flash, and repeat until error patterns stabilize.
 
 ------------------------------------------------------------------------------------------------
 

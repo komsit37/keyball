@@ -19,6 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 #include "quantum.h"
+#ifdef KEYBALL_STATS_ENABLE
+#include "print.h"
+#endif
 
 enum combo_events {
     EI_ALT_BSPC,
@@ -36,6 +39,15 @@ enum combo_events {
     SH_TG2,
     COMBO_COUNT
 };
+
+#ifdef KEYBALL_STATS_ENABLE
+enum custom_keycodes {
+    STATS_DUMP = SAFE_RANGE,
+};
+#    define STATS_DUMP_KEY STATS_DUMP
+#else
+#    define STATS_DUMP_KEY _______
+#endif
 
 const uint16_t PROGMEM ei_combo[]  = {RSFT_T(KC_E), RGUI_T(KC_I), COMBO_END};
 const uint16_t PROGMEM ha_combo[]  = {LT(2, KC_H), LT(4, KC_A), COMBO_END};
@@ -64,8 +76,128 @@ combo_t key_combos[COMBO_COUNT] = {
     [NR_ALT_DEL]  = COMBO(nr_combo, A(KC_DEL)),
     [SG_RIGHT]    = COMBO(sg_combo, A(KC_RGHT)),
     [ENT_SPC_TG1] = COMBO(ent_spc_combo, TG(1)),
-    [SH_TG2]      = COMBO(sh_combo, TG(2)),
+    [SH_TG2]      = COMBO(sh_combo, TG(5)),
 };
+
+#ifdef KEYBALL_STATS_ENABLE
+typedef struct {
+    uint32_t presses;
+    uint32_t taps;
+    uint32_t holds;
+    uint32_t interrupted;
+    uint32_t tap_time_total;
+    uint32_t hold_time_total;
+    uint16_t press_timer;
+    bool     pressed;
+} dual_role_stat_t;
+
+enum tracked_dual_role {
+    TR_L,
+    TR_D,
+    TR_W,
+    TR_F,
+    TR_O,
+    TR_U,
+    TR_N,
+    TR_R,
+    TR_E,
+    TR_I,
+    TR_T,
+    TR_S,
+    TR_H,
+    TR_A,
+    TR_COUNT
+};
+
+static const uint16_t tracked_keycodes[TR_COUNT] = {
+    LALT_T(KC_L),
+    LCTL_T(KC_D),
+    LGUI_T(KC_W),
+    RGUI_T(KC_F),
+    RCTL_T(KC_O),
+    RALT_T(KC_U),
+    LGUI_T(KC_N),
+    LSFT_T(KC_R),
+    RSFT_T(KC_E),
+    RGUI_T(KC_I),
+    LT(4, KC_T),
+    LT(2, KC_S),
+    LT(2, KC_H),
+    LT(4, KC_A),
+};
+
+static dual_role_stat_t dual_role_stats[TR_COUNT];
+static uint32_t         combo_triggers[COMBO_COUNT];
+
+static int8_t tracked_index_from_keycode(uint16_t keycode) {
+    for (uint8_t i = 0; i < TR_COUNT; i++) {
+        if (tracked_keycodes[i] == keycode) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+static void dump_dual_role_stats(void) {
+    uprintf("\nKBST\n");
+    for (uint8_t i = 0; i < TR_COUNT; i++) {
+        dual_role_stat_t *s       = &dual_role_stats[i];
+        uint32_t          tap_avg = s->taps ? (s->tap_time_total / s->taps) : 0;
+        uint32_t          hold_avg = s->holds ? (s->hold_time_total / s->holds) : 0;
+        uint32_t          tap_pct  = s->presses ? ((s->taps * 100U) / s->presses) : 0;
+        uprintf("K%u,%lu,%lu,%lu,%lu,%lu,%lu,%lu\n", i, s->presses, s->taps, s->holds, s->interrupted, tap_avg, hold_avg, tap_pct);
+    }
+    for (uint8_t i = 0; i < COMBO_COUNT; i++) {
+        uprintf("C%u,%lu\n", i, combo_triggers[i]);
+    }
+}
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    if (pressed && combo_index < COMBO_COUNT) {
+        combo_triggers[combo_index]++;
+    }
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (keycode == STATS_DUMP && record->event.pressed) {
+        dump_dual_role_stats();
+        return false;
+    }
+
+    int8_t tracked = tracked_index_from_keycode(keycode);
+    if (tracked < 0) {
+        return true;
+    }
+
+    dual_role_stat_t *s = &dual_role_stats[tracked];
+    if (record->event.pressed) {
+        s->presses++;
+        s->pressed     = true;
+        s->press_timer = timer_read();
+        return true;
+    }
+
+    if (s->pressed) {
+        uint16_t elapsed = timer_elapsed(s->press_timer);
+        if (elapsed == 0) {
+            elapsed = 1;
+        }
+        if (record->tap.count > 0) {
+            s->taps++;
+            s->tap_time_total += elapsed;
+        } else {
+            s->holds++;
+            s->hold_time_total += elapsed;
+        }
+        if (record->tap.interrupted) {
+            s->interrupted++;
+        }
+        s->pressed = false;
+    }
+
+    return true;
+}
+#endif
 
 bool get_combo_must_tap(uint16_t combo_index, combo_t *combo) {
     return true;
@@ -88,12 +220,15 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LALT_T(KC_L):
         case RALT_T(KC_U):
         case LSFT_T(KC_R):
-        case RSFT_T(KC_E):
             return RING_TERM;
+        case RSFT_T(KC_E):
+            return RING_TERM + 8;
 
         // Middle
         case LCTL_T(KC_D):
+            return MIDDLE_TERM;
         case RCTL_T(KC_O):
+            return MIDDLE_TERM + 8;
         case LT(4, KC_T):
         case LT(4, KC_A):
             return MIDDLE_TERM;
@@ -137,7 +272,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______ , KC_F1        , KC_F2        , KC_F3        , KC_F4        , KC_F5        ,                                  KC_F6        , KC_F7        , KC_F8        , KC_F9        , KC_F10       , _______  ,
     _______ , KC_GRV       , LSFT_T(KC_P) , KC_P         , KC_QUOT      , KC_BSLS      ,                                  KC_VOLU      , KC_VOLD      , KC_QUOT      , KC_LBRC      , KC_RBRC      , _______  ,
     _______ , LGUI_T(KC_Z) , _______      , QK_MACRO_0   , QK_MACRO_1   , _______      ,                                  CPI_I100     , CPI_D100     , SCRL_DVD     , SCRL_DVI     , SCRL_DVD     , SCRL_DVI ,
-              _______ , _______      , _______      , _______      , _______      ,                  KC_DEL       , KC_ENT       , KC_NO         , KC_NO    , AML_TO
+              STATS_DUMP_KEY, _______      , _______      , _______      , _______      ,                  KC_DEL       , KC_ENT       , KC_NO         , KC_NO    , AML_TO
   ),
 
   [4] = LAYOUT_universal(
@@ -145,6 +280,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_A      , KC_A       , KC_S       , KC_D       , KC_F       , KC_G       ,                                  _______      , S(KC_4)     , S(KC_5)     , S(KC_6)     , S(KC_SCLN) , _______  ,
     RGB_RMOD , RGB_HUD    , RGB_SAD    , RGB_VAD    , _______    , _______    ,                                  _______      , S(KC_1)     , S(KC_2)     , S(KC_3)     , _______    , _______  ,
               QK_BOOT  , _______    , KC_TAB     , KC_SPC     , _______    ,                  _______      , _______    , KC_NO         , KC_NO    , TO(0)
+  ),
+
+  // Excel / spreadsheet layer
+  [5] = LAYOUT_universal(
+    KC_ESC      , LGUI(KC_Z) , LGUI(KC_Y) , LGUI(KC_C) , LGUI(KC_V) , LGUI(KC_S) ,                                 S(KC_EQL) , KC_7     , KC_8    , KC_9    , S(KC_8)  , KC_MINS  ,
+    KC_TAB      , LSFT(KC_TAB), KC_F2      , KC_UP      , KC_ENT     , KC_HOME    ,                                 KC_MINS   , KC_4     , KC_5    , KC_6    , KC_EQL   , KC_MINS  ,
+    KC_DEL      , LGUI(KC_D) , KC_LEFT    , KC_DOWN    , KC_RGHT    , KC_END     ,                                 KC_0      , KC_1     , KC_2    , KC_3    , KC_SLSH  , KC_DOT   ,
+                  KC_PGUP     , KC_PGDN    , KC_LSFT    , TO(0)      , KC_SPC     ,                  KC_COMM   , KC_DOT   , KC_BSPC      , KC_ENT  , TO(0)
   ),
 };
 // clang-format on
