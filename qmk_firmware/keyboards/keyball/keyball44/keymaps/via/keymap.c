@@ -21,14 +21,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "quantum.h"
 
 enum combo_events {
-    TS_CMB,
+    EI_ALT_BSPC,
+    HA_CTRL_A,
+    AE_CAPS_WORD,
+    XM_COPY,
+    MC_PASTE,
+    CV_UNDERSCORE,
+    YH_MINUS,
+    ENT_SPC_TG1,
+    SH_TG2,
     COMBO_COUNT
 };
 
-const uint16_t PROGMEM ts_combo[] = {LT(4, KC_T), LT(2, KC_S), COMBO_END};
+const uint16_t PROGMEM ei_combo[]  = {RSFT_T(KC_E), RGUI_T(KC_I), COMBO_END};
+const uint16_t PROGMEM ha_combo[]  = {LT(2, KC_H), LT(4, KC_A), COMBO_END};
+const uint16_t PROGMEM ae_combo[]  = {LT(4, KC_A), RSFT_T(KC_E), COMBO_END};
+const uint16_t PROGMEM xm_combo[]  = {KC_X, KC_M, COMBO_END};
+const uint16_t PROGMEM mc_combo[]  = {KC_M, KC_C, COMBO_END};
+const uint16_t PROGMEM cv_combo[]  = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM yh_combo[]  = {KC_Y, LT(2, KC_H), COMBO_END};
+const uint16_t PROGMEM ent_spc_combo[] = {LT(1, KC_ENT), LT(1, KC_SPC), COMBO_END};
+const uint16_t PROGMEM sh_combo[]  = {LT(2, KC_S), LT(2, KC_H), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    [TS_CMB] = COMBO(ts_combo, C(KC_A)),
+    [EI_ALT_BSPC] = COMBO(ei_combo, A(KC_BSPC)),
+    [HA_CTRL_A]   = COMBO(ha_combo, C(KC_A)),
+    [AE_CAPS_WORD]= COMBO(ae_combo, QK_CAPS_WORD_TOGGLE),
+    [XM_COPY]     = COMBO(xm_combo, C(KC_C)),
+    [MC_PASTE]    = COMBO(mc_combo, C(KC_V)),
+    [CV_UNDERSCORE]= COMBO(cv_combo, S(KC_MINS)),
+    [YH_MINUS]    = COMBO(yh_combo, KC_MINS),
+    [ENT_SPC_TG1] = COMBO(ent_spc_combo, TG(1)),
+    [SH_TG2]      = COMBO(sh_combo, TG(2)),
 };
 
 // clang-format off
@@ -42,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [1] = LAYOUT_universal(
-    _______ , _______      , _______       , _______       , _______       , _______       ,                                  RGUI_T(KC_GRV) , _______       , RCTL_T(S(KC_9)), RALT_T(S(KC_9)), RCTL_T(KC_UP) , KC_HOME  ,
+    _______ , _______      , _______       , _______       , _______       , _______       ,                                  RGUI(KC_GRV)   , _______       , RCTL_T(S(KC_9)), RALT_T(S(KC_9)), RCTL_T(KC_UP) , KC_HOME  ,
     _______ , _______      , LSFT_T(KC_GRV), KC_UP         , KC_ESC        , KC_HOME       ,                                  RGUI_T(KC_LBRC), KC_BTN1       , KC_UP         , RSFT_T(KC_BTN2), RGUI_T(KC_HOME), _______  ,
     _______ , KC_LALT      , KC_LEFT       , KC_DOWN       , KC_RGHT       , KC_END        ,                                  S(KC_1)        , KC_LEFT       , KC_DOWN       , KC_RGHT       , RALT_T(KC_END) , KC_END   ,
               _______      , _______       , _______       , _______       , KC_DEL        ,                  _______        , _______       , KC_NO         , KC_NO   , KC_RCTL
@@ -75,14 +99,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
     keyball_set_scroll_mode(get_highest_layer(state) == 3);
     return state;
-}
-
-bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    if (get_highest_layer(layer_state) != 0) {
-        return false;
-    }
-
-    return true;
 }
 
 #ifdef OLED_ENABLE
