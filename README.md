@@ -48,6 +48,12 @@ config.h
 #define PERMISSIVE_HOLD
 ```
 
+## Update 2026-02-20
+Keymap refresh for current daily layout and a new combo.
+- Layer 0: shift-hold moved from `;` to `E`, layer 2 symbols adjusted (`@/#` -> `2/3`), thumb cluster updated to match current sheet.
+- Layer 1-4: synced to the latest cheat sheet (navigation, symbols, function/media, RGB/boot).
+- Combo: `T` + `S` on layer 0 outputs `Ctrl+A`.
+
 ------------------------------------------------------------------------------------------------
 
 # Original README

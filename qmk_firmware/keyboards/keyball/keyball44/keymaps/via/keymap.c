@@ -20,6 +20,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
+enum combo_events {
+    TS_CMB,
+    COMBO_COUNT
+};
+
+const uint16_t PROGMEM ts_combo[] = {LT(4, KC_T), LT(2, KC_S), COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+    [TS_CMB] = COMBO(ts_combo, C(KC_A)),
+};
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
@@ -64,6 +75,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
     keyball_set_scroll_mode(get_highest_layer(state) == 3);
     return state;
+}
+
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    if (get_highest_layer(layer_state) != 0) {
+        return false;
+    }
+
+    return true;
 }
 
 #ifdef OLED_ENABLE
