@@ -28,6 +28,10 @@ enum combo_events {
     MC_PASTE,
     CV_UNDERSCORE,
     YH_MINUS,
+    KP_MINUS,
+    DOT_SCLN_COLON,
+    NR_ALT_DEL,
+    SG_RIGHT,
     ENT_SPC_TG1,
     SH_TG2,
     COMBO_COUNT
@@ -40,6 +44,10 @@ const uint16_t PROGMEM xm_combo[]  = {KC_X, KC_M, COMBO_END};
 const uint16_t PROGMEM mc_combo[]  = {KC_M, KC_C, COMBO_END};
 const uint16_t PROGMEM cv_combo[]  = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM yh_combo[]  = {KC_Y, LT(2, KC_H), COMBO_END};
+const uint16_t PROGMEM kp_combo[]  = {KC_K, KC_P, COMBO_END};
+const uint16_t PROGMEM dot_scln_combo[] = {LT(3, KC_DOT), KC_SCLN, COMBO_END};
+const uint16_t PROGMEM nr_combo[]  = {LGUI_T(KC_N), LSFT_T(KC_R), COMBO_END};
+const uint16_t PROGMEM sg_combo[]  = {LT(2, KC_S), KC_G, COMBO_END};
 const uint16_t PROGMEM ent_spc_combo[] = {LT(1, KC_ENT), LT(1, KC_SPC), COMBO_END};
 const uint16_t PROGMEM sh_combo[]  = {LT(2, KC_S), LT(2, KC_H), COMBO_END};
 
@@ -47,10 +55,14 @@ combo_t key_combos[COMBO_COUNT] = {
     [EI_ALT_BSPC] = COMBO(ei_combo, A(KC_BSPC)),
     [HA_CTRL_A]   = COMBO(ha_combo, C(KC_A)),
     [AE_CAPS_WORD]= COMBO(ae_combo, QK_CAPS_WORD_TOGGLE),
-    [XM_COPY]     = COMBO(xm_combo, C(KC_C)),
-    [MC_PASTE]    = COMBO(mc_combo, C(KC_V)),
+    [XM_COPY]     = COMBO(xm_combo, LGUI(KC_C)),
+    [MC_PASTE]    = COMBO(mc_combo, LGUI(KC_V)),
     [CV_UNDERSCORE]= COMBO(cv_combo, S(KC_MINS)),
-    [YH_MINUS]    = COMBO(yh_combo, KC_MINS),
+    [YH_MINUS]    = COMBO(yh_combo, A(KC_LEFT)),
+    [KP_MINUS]    = COMBO(kp_combo, KC_MINS),
+    [DOT_SCLN_COLON] = COMBO(dot_scln_combo, S(KC_SCLN)),
+    [NR_ALT_DEL]  = COMBO(nr_combo, A(KC_DEL)),
+    [SG_RIGHT]    = COMBO(sg_combo, A(KC_RGHT)),
     [ENT_SPC_TG1] = COMBO(ent_spc_combo, TG(1)),
     [SH_TG2]      = COMBO(sh_combo, TG(2)),
 };
@@ -61,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_universal(
     KC_UP   , KC_B          , LALT_T(KC_L)  , LCTL_T(KC_D)  , LGUI_T(KC_W)  , KC_Q     ,                                    KC_QUOT       , RGUI_T(KC_F)  , RCTL_T(KC_O)  , RALT_T(KC_U)  , KC_J     , KC_LBRC  ,
     LSFT_T(KC_DOWN), LGUI_T(KC_N)  , LSFT_T(KC_R)  , LT(4,KC_T)    , LT(2,KC_S)    , KC_G     ,                                    KC_Y          , LT(2,KC_H)    , LT(4,KC_A)    , RSFT_T(KC_E) , RGUI_T(KC_I) , MT(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_RBRC) ,
-    LGUI_T(KC_GRV), KC_Z          , KC_X          , KC_M          , KC_C          , KC_V     ,                                    KC_K          , KC_P          , LT(3,KC_DOT)  , KC_SCLN  , KC_SLSH  , KC_ENT   ,
+    LGUI(KC_GRV), KC_Z     , KC_X          , KC_M          , KC_C          , KC_V     ,                                    KC_K          , KC_P          , LT(3,KC_DOT)  , KC_SCLN  , KC_SLSH  , KC_ENT   ,
               KC_LEFT      , KC_RGHT       , LT(3,KC_TAB)   , LT(1,KC_ENT)   , LSFT_T(KC_ESC) ,                  LT(2,KC_BSPC), LT(1,KC_SPC) , KC_NO        , KC_NO    , QK_CAPS_WORD_TOGGLE
   ),
 
