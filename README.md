@@ -49,10 +49,25 @@ config.h
 ```
 
 ## Update 2026-02-20
-Keymap refresh for current daily layout and a new combo.
-- Layer 0: shift-hold moved from `;` to `E`, layer 2 symbols adjusted (`@/#` -> `2/3`), thumb cluster updated to match current sheet.
-- Layer 1-4: synced to the latest cheat sheet (navigation, symbols, function/media, RGB/boot).
-- Combo: `T` + `S` on layer 0 outputs `Ctrl+A`.
+Keymap refresh for current daily usage and combo-heavy text navigation/editing.
+- Layer 0: shift-hold moved from `;` to `E`.
+- Layer 2: symbol row adjusted (`@/#` changed to `2/3` on the base positions).
+- Layer 1-4: synced to current cheat sheet (navigation, symbols, function/media, RGB/boot).
+- Combos enabled with `COMBO_ALLOW_ACTION_KEYS` and `COMBO_ONLY_FROM_LAYER 0` in `config.h`, plus `COMBO_ENABLE = yes` in `rules.mk`.
+- Active combos:
+  - `E+I` -> `Alt+Backspace`
+  - `H+A` -> `Ctrl+A`
+  - `A+E` -> `Caps Word Toggle`
+  - `X+M` -> `Cmd+C`
+  - `M+C` -> `Cmd+V`
+  - `C+V` -> `_`
+  - `Y+H` -> `Alt+Left`
+  - `K+P` -> `-`
+  - `N+R` -> `Alt+Delete`
+  - `S+G` -> `Alt+Right`
+  - `.+;` -> `:`
+  - `Enter+Space` -> `TG(1)`
+  - `S+H` -> `TG(2)`
 
 ------------------------------------------------------------------------------------------------
 
