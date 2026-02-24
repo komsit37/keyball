@@ -27,6 +27,7 @@ enum combo_events {
     EI_ALT_BSPC,
     DW_LPAREN,
     TS_RPAREN,
+    UJ_ALT_DEL,
     HA_CTRL_A,
     AE_CAPS_WORD,
     XM_COPY,
@@ -60,6 +61,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM ei_combo[]  = {RSFT_T(KC_E), RGUI_T(KC_I), COMBO_END};
 const uint16_t PROGMEM dw_combo[]  = {LCTL_T(KC_D), LGUI_T(KC_W), COMBO_END};
 const uint16_t PROGMEM ts_combo[]  = {LT(4, KC_T), LT(2, KC_S), COMBO_END};
+const uint16_t PROGMEM uj_combo[]  = {RALT_T(KC_U), KC_J, COMBO_END};
 const uint16_t PROGMEM ha_combo[]  = {LT(2, KC_H), LT(4, KC_A), COMBO_END};
 const uint16_t PROGMEM ae_combo[]  = {LT(4, KC_A), RSFT_T(KC_E), COMBO_END};
 const uint16_t PROGMEM xm_combo[]  = {KC_X, KC_M, COMBO_END};
@@ -80,9 +82,10 @@ const uint16_t PROGMEM ent_spc_combo[] = {LT(1, KC_ENT), LT(1, KC_SPC), COMBO_EN
 const uint16_t PROGMEM sh_combo[]  = {KC_SLSH, KC_ENT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    [EI_ALT_BSPC] = COMBO(ei_combo, A(KC_DEL)),
+    [EI_ALT_BSPC] = COMBO(ei_combo, A(KC_BSPC)),
     [DW_LPAREN]   = COMBO(dw_combo, S(KC_9)),
     [TS_RPAREN]   = COMBO(ts_combo, S(KC_0)),
+    [UJ_ALT_DEL]  = COMBO(uj_combo, A(KC_DEL)),
     [HA_CTRL_A]   = COMBO(ha_combo, C(KC_A)),
     [AE_CAPS_WORD]= COMBO(ae_combo, QK_CAPS_WORD_TOGGLE),
     [XM_COPY]     = COMBO(xm_combo, LGUI(KC_C)),
