@@ -39,13 +39,15 @@ Scope: `/Users/pkomsit/code/c/keyball`
   - `H+A -> Ctrl+A`
   - `A+E -> Caps Word Toggle`
   - `X+M -> Cmd+C`
-  - `M+C -> Cmd+V`
-  - `C+V -> _`
+  - `X+C -> Cmd+V`
+  - `M+C -> ,`
+  - `C+V -> \``
   - `Y+H -> Alt+Left`
-  - `K+P -> -`
+  - `P+. -> -`
+  - `K+P -> _`
   - `N+R -> Alt+Delete`
   - `S+G -> Alt+Right`
-  - `.+; -> :`
+  - `.+; -> ,`
 
 ## Excel Layer (Layer 5)
 - Added for number-heavy spreadsheet workflows.

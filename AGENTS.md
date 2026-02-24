@@ -29,6 +29,10 @@ After every meaningful change, update:
 - 2026-02-20: Implemented telemetry stats dump (`STATS_DUMP`) and `qmk console` output for tuning.
 - 2026-02-20: Reduced flash pressure (LTO, telemetry string compression, `OLED_ENABLE = no` in telemetry profile).
 - 2026-02-20: Patched `keyball.c` for non-OLED build compatibility.
+- 2026-02-24: Set combo `C+M` to comma; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
+- 2026-02-24: Set paste combo to `X+C`; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
+- 2026-02-24: Added combos `P+.` -> `-`, `K+P` -> `_`, `.+;` -> `,`; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
+- 2026-02-24: Set combo `C+V` to backtick; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
 
 ## Knowledge Base
 - Combo/layer conflicts are likely when layer-tap keys participate in combos; `COMBO_MUST_TAP_PER_COMBO` avoids hold-trigger collisions.

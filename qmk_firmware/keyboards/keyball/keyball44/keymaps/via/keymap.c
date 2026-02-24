@@ -28,11 +28,13 @@ enum combo_events {
     HA_CTRL_A,
     AE_CAPS_WORD,
     XM_COPY,
-    MC_PASTE,
+    XC_PASTE,
+    MC_COMMA,
+    P_DOT_MINUS,
     CV_UNDERSCORE,
     YH_MINUS,
-    KP_MINUS,
-    DOT_SCLN_COLON,
+    KP_UNDERSCORE,
+    DOT_SCLN_COMMA,
     NR_ALT_DEL,
     SG_RIGHT,
     ENT_SPC_TG1,
@@ -53,10 +55,12 @@ const uint16_t PROGMEM ei_combo[]  = {RSFT_T(KC_E), RGUI_T(KC_I), COMBO_END};
 const uint16_t PROGMEM ha_combo[]  = {LT(2, KC_H), LT(4, KC_A), COMBO_END};
 const uint16_t PROGMEM ae_combo[]  = {LT(4, KC_A), RSFT_T(KC_E), COMBO_END};
 const uint16_t PROGMEM xm_combo[]  = {KC_X, KC_M, COMBO_END};
+const uint16_t PROGMEM xc_combo[]  = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM mc_combo[]  = {KC_M, KC_C, COMBO_END};
 const uint16_t PROGMEM cv_combo[]  = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM yh_combo[]  = {KC_Y, LT(2, KC_H), COMBO_END};
 const uint16_t PROGMEM kp_combo[]  = {KC_K, KC_P, COMBO_END};
+const uint16_t PROGMEM p_dot_combo[] = {KC_P, LT(3, KC_DOT), COMBO_END};
 const uint16_t PROGMEM dot_scln_combo[] = {LT(3, KC_DOT), KC_SCLN, COMBO_END};
 const uint16_t PROGMEM nr_combo[]  = {LGUI_T(KC_N), LSFT_T(KC_R), COMBO_END};
 const uint16_t PROGMEM sg_combo[]  = {LT(2, KC_S), KC_G, COMBO_END};
@@ -68,11 +72,13 @@ combo_t key_combos[COMBO_COUNT] = {
     [HA_CTRL_A]   = COMBO(ha_combo, C(KC_A)),
     [AE_CAPS_WORD]= COMBO(ae_combo, QK_CAPS_WORD_TOGGLE),
     [XM_COPY]     = COMBO(xm_combo, LGUI(KC_C)),
-    [MC_PASTE]    = COMBO(mc_combo, LGUI(KC_V)),
-    [CV_UNDERSCORE]= COMBO(cv_combo, S(KC_MINS)),
+    [XC_PASTE]    = COMBO(xc_combo, LGUI(KC_V)),
+    [MC_COMMA]    = COMBO(mc_combo, KC_COMM),
+    [CV_UNDERSCORE]= COMBO(cv_combo, KC_GRV),
     [YH_MINUS]    = COMBO(yh_combo, A(KC_LEFT)),
-    [KP_MINUS]    = COMBO(kp_combo, KC_MINS),
-    [DOT_SCLN_COLON] = COMBO(dot_scln_combo, S(KC_SCLN)),
+    [P_DOT_MINUS] = COMBO(p_dot_combo, KC_MINS),
+    [KP_UNDERSCORE] = COMBO(kp_combo, S(KC_MINS)),
+    [DOT_SCLN_COMMA] = COMBO(dot_scln_combo, KC_COMM),
     [NR_ALT_DEL]  = COMBO(nr_combo, A(KC_DEL)),
     [SG_RIGHT]    = COMBO(sg_combo, A(KC_RGHT)),
     [ENT_SPC_TG1] = COMBO(ent_spc_combo, TG(1)),
