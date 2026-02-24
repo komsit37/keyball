@@ -25,18 +25,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 enum combo_events {
     EI_ALT_BSPC,
+    DW_LPAREN,
+    TS_RPAREN,
     HA_CTRL_A,
     AE_CAPS_WORD,
     XM_COPY,
     XC_PASTE,
     MC_COMMA,
+    WQ_LBRC,
     P_DOT_MINUS,
     CV_UNDERSCORE,
     YH_MINUS,
     KP_UNDERSCORE,
+    LD_LCBR,
+    RT_RCBR,
+    BL_LABK,
     DOT_SCLN_COMMA,
-    NR_ALT_DEL,
-    SG_RIGHT,
+    NR_RABK,
+    SG_RBRC,
     ENT_SPC_TG1,
     SH_TG2,
     COMBO_COUNT
@@ -52,14 +58,20 @@ enum custom_keycodes {
 #endif
 
 const uint16_t PROGMEM ei_combo[]  = {RSFT_T(KC_E), RGUI_T(KC_I), COMBO_END};
+const uint16_t PROGMEM dw_combo[]  = {LCTL_T(KC_D), LGUI_T(KC_W), COMBO_END};
+const uint16_t PROGMEM ts_combo[]  = {LT(4, KC_T), LT(2, KC_S), COMBO_END};
 const uint16_t PROGMEM ha_combo[]  = {LT(2, KC_H), LT(4, KC_A), COMBO_END};
 const uint16_t PROGMEM ae_combo[]  = {LT(4, KC_A), RSFT_T(KC_E), COMBO_END};
 const uint16_t PROGMEM xm_combo[]  = {KC_X, KC_M, COMBO_END};
 const uint16_t PROGMEM xc_combo[]  = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM mc_combo[]  = {KC_M, KC_C, COMBO_END};
+const uint16_t PROGMEM wq_combo[]  = {LGUI_T(KC_W), KC_Q, COMBO_END};
 const uint16_t PROGMEM cv_combo[]  = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM yh_combo[]  = {KC_Y, LT(2, KC_H), COMBO_END};
 const uint16_t PROGMEM kp_combo[]  = {KC_K, KC_P, COMBO_END};
+const uint16_t PROGMEM ld_combo[]  = {LALT_T(KC_L), LCTL_T(KC_D), COMBO_END};
+const uint16_t PROGMEM rt_combo[]  = {LSFT_T(KC_R), LT(4, KC_T), COMBO_END};
+const uint16_t PROGMEM bl_combo[]  = {KC_B, LALT_T(KC_L), COMBO_END};
 const uint16_t PROGMEM p_dot_combo[] = {KC_P, LT(3, KC_DOT), COMBO_END};
 const uint16_t PROGMEM dot_scln_combo[] = {LT(3, KC_DOT), KC_SCLN, COMBO_END};
 const uint16_t PROGMEM nr_combo[]  = {LGUI_T(KC_N), LSFT_T(KC_R), COMBO_END};
@@ -68,19 +80,25 @@ const uint16_t PROGMEM ent_spc_combo[] = {LT(1, KC_ENT), LT(1, KC_SPC), COMBO_EN
 const uint16_t PROGMEM sh_combo[]  = {KC_SLSH, KC_ENT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    [EI_ALT_BSPC] = COMBO(ei_combo, A(KC_BSPC)),
+    [EI_ALT_BSPC] = COMBO(ei_combo, A(KC_DEL)),
+    [DW_LPAREN]   = COMBO(dw_combo, S(KC_9)),
+    [TS_RPAREN]   = COMBO(ts_combo, S(KC_0)),
     [HA_CTRL_A]   = COMBO(ha_combo, C(KC_A)),
     [AE_CAPS_WORD]= COMBO(ae_combo, QK_CAPS_WORD_TOGGLE),
     [XM_COPY]     = COMBO(xm_combo, LGUI(KC_C)),
     [XC_PASTE]    = COMBO(xc_combo, LGUI(KC_V)),
     [MC_COMMA]    = COMBO(mc_combo, KC_COMM),
+    [WQ_LBRC]     = COMBO(wq_combo, KC_LBRC),
     [CV_UNDERSCORE]= COMBO(cv_combo, KC_GRV),
     [YH_MINUS]    = COMBO(yh_combo, A(KC_LEFT)),
     [P_DOT_MINUS] = COMBO(p_dot_combo, KC_MINS),
     [KP_UNDERSCORE] = COMBO(kp_combo, S(KC_MINS)),
+    [LD_LCBR]     = COMBO(ld_combo, S(KC_LBRC)),
+    [RT_RCBR]     = COMBO(rt_combo, S(KC_RBRC)),
+    [BL_LABK]     = COMBO(bl_combo, S(KC_COMM)),
     [DOT_SCLN_COMMA] = COMBO(dot_scln_combo, KC_COMM),
-    [NR_ALT_DEL]  = COMBO(nr_combo, A(KC_DEL)),
-    [SG_RIGHT]    = COMBO(sg_combo, A(KC_RGHT)),
+    [NR_RABK]     = COMBO(nr_combo, S(KC_DOT)),
+    [SG_RBRC]     = COMBO(sg_combo, KC_RBRC),
     [ENT_SPC_TG1] = COMBO(ent_spc_combo, TG(1)),
     [SH_TG2]      = COMBO(sh_combo, TG(5)),
 };

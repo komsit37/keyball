@@ -33,6 +33,8 @@ After every meaningful change, update:
 - 2026-02-24: Set paste combo to `X+C`; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
 - 2026-02-24: Added combos `P+.` -> `-`, `K+P` -> `_`, `.+;` -> `,`; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
 - 2026-02-24: Set combo `C+V` to backtick; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
+- 2026-02-24: Added bracket/paren combos and repurposed `N+R`, `S+G`; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
+- 2026-02-24: Set combo `E+I` to Alt+Delete; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
 
 ## Knowledge Base
 - Combo/layer conflicts are likely when layer-tap keys participate in combos; `COMBO_MUST_TAP_PER_COMBO` avoids hold-trigger collisions.

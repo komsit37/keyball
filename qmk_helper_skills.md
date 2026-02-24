@@ -35,18 +35,24 @@ Scope: `/Users/pkomsit/code/c/keyball`
   - `/, Enter -> TG(5)` (Excel layer toggle)
   - `Enter + Space -> TG(1)`
 - Useful active combos (as implemented in keymap):
-  - `E+I -> Alt+Backspace`
+  - `E+I -> Alt+Delete`
+  - `D+W -> (`
+  - `T+S -> )`
   - `H+A -> Ctrl+A`
   - `A+E -> Caps Word Toggle`
   - `X+M -> Cmd+C`
   - `X+C -> Cmd+V`
   - `M+C -> ,`
+  - `W+Q -> [`
   - `C+V -> \``
   - `Y+H -> Alt+Left`
   - `P+. -> -`
   - `K+P -> _`
-  - `N+R -> Alt+Delete`
-  - `S+G -> Alt+Right`
+  - `L+D -> {`
+  - `R+T -> }`
+  - `B+L -> <`
+  - `N+R -> >`
+  - `S+G -> ]`
   - `.+; -> ,`
 
 ## Excel Layer (Layer 5)
