@@ -40,8 +40,10 @@ Scope: `/Users/pkomsit/code/c/keyball`
   - `D+W -> (`
   - `T+S -> )`
   - `H+A -> Ctrl+A`
-  - `A+E -> Caps Word Toggle`
+  - `A+E -> Alt+Right`
+  - `F+O -> Caps Word Toggle`
   - `X+M -> Cmd+C`
+  - `Z+X -> ?`
   - `X+C -> Cmd+V`
   - `M+C -> ,`
   - `W+Q -> [`
@@ -56,10 +58,10 @@ Scope: `/Users/pkomsit/code/c/keyball`
   - `S+G -> ]`
   - `.+; -> ,`
 
-## Combo Cheat Sheet
-- Generator: `./bin/gen_combo_cheatsheet.py`
-- Inputs: `qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c`, `assets/keyball_layout.png`, `assets/keyball_layout_coords.json`
-- Output: `combo_cheatsheet.html`
+## ASCII Combo Map
+- Generator: `./bin/print_combo.py`
+- Source: `qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c`
+- Output: stdout (layer 0 layout + centered grid pair/output layout + combos list)
 
 ## Excel Layer (Layer 5)
 - Added for number-heavy spreadsheet workflows.

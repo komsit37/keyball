@@ -29,8 +29,10 @@ enum combo_events {
     TS_RPAREN,
     UJ_ALT_DEL,
     HA_CTRL_A,
-    AE_CAPS_WORD,
+    AE_ALT_RIGHT,
+    FO_CAPS_WORD,
     XM_COPY,
+    ZX_QMARK,
     XC_PASTE,
     MC_COMMA,
     WQ_LBRC,
@@ -64,7 +66,9 @@ const uint16_t PROGMEM ts_combo[]  = {LT(4, KC_T), LT(2, KC_S), COMBO_END};
 const uint16_t PROGMEM uj_combo[]  = {RALT_T(KC_U), KC_J, COMBO_END};
 const uint16_t PROGMEM ha_combo[]  = {LT(2, KC_H), LT(4, KC_A), COMBO_END};
 const uint16_t PROGMEM ae_combo[]  = {LT(4, KC_A), RSFT_T(KC_E), COMBO_END};
+const uint16_t PROGMEM fo_combo[]  = {RGUI_T(KC_F), RCTL_T(KC_O), COMBO_END};
 const uint16_t PROGMEM xm_combo[]  = {KC_X, KC_M, COMBO_END};
+const uint16_t PROGMEM zx_combo[]  = {KC_Z, KC_X, COMBO_END};
 const uint16_t PROGMEM xc_combo[]  = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM mc_combo[]  = {KC_M, KC_C, COMBO_END};
 const uint16_t PROGMEM wq_combo[]  = {LGUI_T(KC_W), KC_Q, COMBO_END};
@@ -87,8 +91,10 @@ combo_t key_combos[COMBO_COUNT] = {
     [TS_RPAREN]   = COMBO(ts_combo, S(KC_0)),
     [UJ_ALT_DEL]  = COMBO(uj_combo, A(KC_DEL)),
     [HA_CTRL_A]   = COMBO(ha_combo, C(KC_A)),
-    [AE_CAPS_WORD]= COMBO(ae_combo, QK_CAPS_WORD_TOGGLE),
+    [AE_ALT_RIGHT]= COMBO(ae_combo, A(KC_RGHT)),
+    [FO_CAPS_WORD]= COMBO(fo_combo, QK_CAPS_WORD_TOGGLE),
     [XM_COPY]     = COMBO(xm_combo, LGUI(KC_C)),
+    [ZX_QMARK]    = COMBO(zx_combo, S(KC_SLSH)),
     [XC_PASTE]    = COMBO(xc_combo, LGUI(KC_V)),
     [MC_COMMA]    = COMBO(mc_combo, KC_COMM),
     [WQ_LBRC]     = COMBO(wq_combo, KC_LBRC),

@@ -37,6 +37,15 @@ After every meaningful change, update:
 - 2026-02-24: Set combo `E+I` to Alt+Delete; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
 - 2026-02-24: Set combo `E+I` to Alt+Backspace and added `U+J` -> Alt+Delete; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
 - 2026-02-24: Added combo cheat sheet generator and output; files: bin/gen_combo_cheatsheet.py, assets/keyball_layout_coords.json, combo_cheatsheet.html, qmk_helper_skills.md
+- 2026-02-24: Added ASCII combo map generator; files: bin/print_combo.py, qmk_helper_skills.md
+- 2026-02-24: Added combo partner layout output to ASCII combo map; files: bin/print_combo.py, qmk_helper_skills.md
+- 2026-02-24: Added per-key combo partner->output layout to ASCII combo map; files: bin/print_combo.py, qmk_helper_skills.md
+- 2026-02-24: Deduplicated combo layout to show one line per combo (canonical key); files: bin/print_combo.py
+- 2026-02-24: Adjusted combo layout to two-line pair/output per key; files: bin/print_combo.py, qmk_helper_skills.md
+- 2026-02-24: Centered combo grid with connected borders; files: bin/print_combo.py, qmk_helper_skills.md
+- 2026-02-24: Removed combo cheat sheet generator; files: bin/gen_combo_cheatsheet.py, qmk_helper_skills.md
+- 2026-02-24: Added bottom-row blank columns for alignment in ASCII combo map; files: bin/print_combo.py
+- 2026-02-24: Updated combos (`Z+X` -> `?`, `F+O` -> Caps Word, `A+E` -> Alt+Right); files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
 
 ## Knowledge Base
 - Combo/layer conflicts are likely when layer-tap keys participate in combos; `COMBO_MUST_TAP_PER_COMBO` avoids hold-trigger collisions.
