@@ -56,6 +56,11 @@ Scope: `/Users/pkomsit/code/c/keyball`
   - `S+G -> ]`
   - `.+; -> ,`
 
+## Combo Cheat Sheet
+- Generator: `./bin/gen_combo_cheatsheet.py`
+- Inputs: `qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c`, `assets/keyball_layout.png`, `assets/keyball_layout_coords.json`
+- Output: `combo_cheatsheet.html`
+
 ## Excel Layer (Layer 5)
 - Added for number-heavy spreadsheet workflows.
 - Kept right-hand number cluster aligned with layer 2 positions.
