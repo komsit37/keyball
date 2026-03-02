@@ -1,6 +1,6 @@
 # QMK Helper Skills (Keyball44 VIA)
 
-Last updated: 2026-02-20
+Last updated: 2026-03-02
 Scope: `/Users/pkomsit/code/c/keyball`
 
 ## Current Firmware Profile
@@ -35,12 +35,12 @@ Scope: `/Users/pkomsit/code/c/keyball`
   - `/, Enter -> TG(5)` (Excel layer toggle)
   - `Enter + Space -> TG(1)`
 - Useful active combos (as implemented in keymap):
-  - `E+I -> Alt+Backspace`
-  - `U+J -> Alt+Delete`
+  - `E+I -> Alt+Right`
+  - `'+F -> Alt+Delete`
   - `D+W -> (`
   - `T+S -> )`
   - `H+A -> Ctrl+A`
-  - `A+E -> Alt+Right`
+  - `A+E -> Alt+Left`
   - `F+O -> Caps Word Toggle`
   - `X+M -> Cmd+C`
   - `Z+X -> ?`
@@ -48,7 +48,7 @@ Scope: `/Users/pkomsit/code/c/keyball`
   - `M+C -> ,`
   - `W+Q -> [`
   - `C+V -> \``
-  - `Y+H -> Alt+Left`
+  - `Y+H -> Alt+Backspace`
   - `P+. -> -`
   - `K+P -> _`
   - `L+D -> {`

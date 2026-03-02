@@ -24,12 +24,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 enum combo_events {
-    EI_ALT_BSPC,
+    EI_ALT_RIGHT,
     DW_LPAREN,
     TS_RPAREN,
-    UJ_ALT_DEL,
+    QF_ALT_DEL,
     HA_CTRL_A,
-    AE_ALT_RIGHT,
+    AE_ALT_LEFT,
     FO_CAPS_WORD,
     XM_COPY,
     ZX_QMARK,
@@ -38,7 +38,7 @@ enum combo_events {
     WQ_LBRC,
     P_DOT_MINUS,
     CV_UNDERSCORE,
-    YH_MINUS,
+    YH_ALT_BSPC,
     KP_UNDERSCORE,
     LD_LCBR,
     RT_RCBR,
@@ -63,7 +63,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM ei_combo[]  = {RSFT_T(KC_E), RGUI_T(KC_I), COMBO_END};
 const uint16_t PROGMEM dw_combo[]  = {LCTL_T(KC_D), LGUI_T(KC_W), COMBO_END};
 const uint16_t PROGMEM ts_combo[]  = {LT(4, KC_T), LT(2, KC_S), COMBO_END};
-const uint16_t PROGMEM uj_combo[]  = {RALT_T(KC_U), KC_J, COMBO_END};
+const uint16_t PROGMEM qf_combo[]  = {KC_QUOT, RGUI_T(KC_F), COMBO_END};
 const uint16_t PROGMEM ha_combo[]  = {LT(2, KC_H), LT(4, KC_A), COMBO_END};
 const uint16_t PROGMEM ae_combo[]  = {LT(4, KC_A), RSFT_T(KC_E), COMBO_END};
 const uint16_t PROGMEM fo_combo[]  = {RGUI_T(KC_F), RCTL_T(KC_O), COMBO_END};
@@ -86,12 +86,12 @@ const uint16_t PROGMEM ent_spc_combo[] = {LT(1, KC_ENT), LT(1, KC_SPC), COMBO_EN
 const uint16_t PROGMEM sh_combo[]  = {KC_SLSH, KC_ENT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    [EI_ALT_BSPC] = COMBO(ei_combo, A(KC_BSPC)),
+    [EI_ALT_RIGHT] = COMBO(ei_combo, A(KC_RGHT)),
     [DW_LPAREN]   = COMBO(dw_combo, S(KC_9)),
     [TS_RPAREN]   = COMBO(ts_combo, S(KC_0)),
-    [UJ_ALT_DEL]  = COMBO(uj_combo, A(KC_DEL)),
+    [QF_ALT_DEL]  = COMBO(qf_combo, A(KC_DEL)),
     [HA_CTRL_A]   = COMBO(ha_combo, C(KC_A)),
-    [AE_ALT_RIGHT]= COMBO(ae_combo, A(KC_RGHT)),
+    [AE_ALT_LEFT] = COMBO(ae_combo, A(KC_LEFT)),
     [FO_CAPS_WORD]= COMBO(fo_combo, QK_CAPS_WORD_TOGGLE),
     [XM_COPY]     = COMBO(xm_combo, LGUI(KC_C)),
     [ZX_QMARK]    = COMBO(zx_combo, S(KC_SLSH)),
@@ -99,7 +99,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [MC_COMMA]    = COMBO(mc_combo, KC_COMM),
     [WQ_LBRC]     = COMBO(wq_combo, KC_LBRC),
     [CV_UNDERSCORE]= COMBO(cv_combo, KC_GRV),
-    [YH_MINUS]    = COMBO(yh_combo, A(KC_LEFT)),
+    [YH_ALT_BSPC] = COMBO(yh_combo, A(KC_BSPC)),
     [P_DOT_MINUS] = COMBO(p_dot_combo, KC_MINS),
     [KP_UNDERSCORE] = COMBO(kp_combo, S(KC_MINS)),
     [LD_LCBR]     = COMBO(ld_combo, S(KC_LBRC)),
