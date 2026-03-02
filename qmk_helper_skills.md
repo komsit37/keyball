@@ -18,10 +18,10 @@ Scope: `/Users/pkomsit/code/c/keyball`
 - `PERMISSIVE_HOLD` disabled.
 - `TAPPING_TERM = 170` with `TAPPING_TERM_PER_KEY`.
 - Finger-based per-key tuning in `get_tapping_term()`:
-  - Pinky: `N/I = 160`
-  - Ring: `L/U/R = 152`, `E = 160`
+  - Pinky: `N = 160`, `I = 168`
+  - Ring: `L/U/R = 152`, `E = 168`
   - Middle: `D/T/A = 145`, `O = 153`
-  - Index: `S/H/W/F = 138`
+  - Index: `W/F = 138`, `S/H = 150`
 - Why:
   - Reduce accidental mod/layer holds in rolling text.
   - Preserve intentional hold behavior for shortcuts and layer-taps.

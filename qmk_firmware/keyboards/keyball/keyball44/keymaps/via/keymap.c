@@ -246,8 +246,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // Pinky
         case LGUI_T(KC_N):
-        case RGUI_T(KC_I):
             return PINKY_TERM;
+        case RGUI_T(KC_I):
+            return PINKY_TERM + 8;
 
         // Ring
         case LALT_T(KC_L):
@@ -255,7 +256,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LSFT_T(KC_R):
             return RING_TERM;
         case RSFT_T(KC_E):
-            return RING_TERM + 8;
+            return RING_TERM + 16;
 
         // Middle
         case LCTL_T(KC_D):
@@ -269,9 +270,10 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         // Index
         case LGUI_T(KC_W):
         case RGUI_T(KC_F):
+            return INDEX_TERM;
         case LT(2, KC_S):
         case LT(2, KC_H):
-            return INDEX_TERM;
+            return INDEX_TERM + 12;
     }
 
     return TAPPING_TERM;

@@ -47,6 +47,7 @@ After every meaningful change, update:
 - 2026-02-24: Added bottom-row blank columns for alignment in ASCII combo map; files: bin/print_combo.py
 - 2026-02-24: Updated combos (`Z+X` -> `?`, `F+O` -> Caps Word, `A+E` -> Alt+Right); files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
 - 2026-03-02: Updated combos (`Y+H` -> Alt+Backspace, `'+F` -> Alt+Delete, `A+E` -> Alt+Left, `E+I` -> Alt+Right, removed `U+J`); files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
+- 2026-03-02: Tweaked home-row tapping terms (S/H +12ms, E/I +8ms) based on stats; files: qmk_firmware/keyboards/keyball/keyball44/keymaps/via/keymap.c, qmk_helper_skills.md
 
 ## Knowledge Base
 - Combo/layer conflicts are likely when layer-tap keys participate in combos; `COMBO_MUST_TAP_PER_COMBO` avoids hold-trigger collisions.
